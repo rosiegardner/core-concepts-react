@@ -8,13 +8,22 @@ import classes from '../Styles/AddUser.module.css';
 const AddUser = (props) => {
   const [username, setUsername] = useState('');
   const [userAge, setUserAge] = useState('');
+  const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
     if (username.trim().length === 0 || userAge.trim().length === 0) {
+      setError({
+        title: 'Invalid Input',
+        message: 'Boxes cannot be empty! Please enter name and age.'
+      });
       return;
     }
     if (+userAge < 1) {
+      setError({
+        title: 'Invalid age',
+        message: 'Age must be greater than 0'
+      });
       return;
     }
     props.onAddUser(username, userAge);
@@ -29,9 +38,19 @@ const AddUser = (props) => {
   const ageChangeHandler = (event) => {
     setUserAge(event.target.value);
   }
+
+  const errorHandler = () => {
+    setError(null);
+  }
+
   return (
     <React.Fragment>
-      <ErrorModal title="An error occured!" message="Something went wrong!" />
+      { error && 
+        <ErrorModal 
+          title={error.title} 
+          message={error.message}
+          onConfirm={errorHandler}
+      /> }
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">UserName</label>
