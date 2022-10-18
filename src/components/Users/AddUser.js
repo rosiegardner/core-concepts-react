@@ -6,19 +6,19 @@ import classes from '../Styles/AddUser.module.css';
 
 const AddUser = (props) => {
   const [username, setUsername] = useState('');
-  const [age, setAge] = useState('');
+  const [userAge, setUserAge] = useState('');
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    if (username.trim().length === 0 || age.trim().length === 0) {
+    if (username.trim().length === 0 || userAge.trim().length === 0) {
       return;
     }
-    if (+age < 1) {
+    if (+userAge < 1) {
       return;
     }
-    console.log(username, age);
+    props.onAddUser(username, userAge);
     setUsername('');
-    setAge('');
+    setUserAge('');
   }
 
   const usernameChangeHandler = (event) => {
@@ -26,7 +26,7 @@ const AddUser = (props) => {
   }
 
   const ageChangeHandler = (event) => {
-    setAge(event.target.value);
+    setUserAge(event.target.value);
   }
   return (
     <Card className={classes.input}>
@@ -41,7 +41,7 @@ const AddUser = (props) => {
         <input 
           id="age"
           type="number"
-          value={age} 
+          value={userAge} 
           onChange={ageChangeHandler}/>
           <Button type="submit">Add User</Button>
       </form>
