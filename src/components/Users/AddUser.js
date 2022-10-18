@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
+import ErrorModal from '../UI/ErrorModal';
 import classes from '../Styles/AddUser.module.css';
 
 
@@ -29,23 +30,26 @@ const AddUser = (props) => {
     setUserAge(event.target.value);
   }
   return (
-    <Card className={classes.input}>
-      <form onSubmit={addUserHandler}>
-        <label htmlFor="username">UserName</label>
-        <input 
-          id="username"
-          type="text" 
-          value={username}
-          onChange={usernameChangeHandler}/>
-        <label htmlFor="age">Age (Years)</label>
-        <input 
-          id="age"
-          type="number"
-          value={userAge} 
-          onChange={ageChangeHandler}/>
-          <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <React.Fragment>
+      <ErrorModal title="An error occured!" message="Something went wrong!" />
+      <Card className={classes.input}>
+        <form onSubmit={addUserHandler}>
+          <label htmlFor="username">UserName</label>
+          <input 
+            id="username"
+            type="text" 
+            value={username}
+            onChange={usernameChangeHandler}/>
+          <label htmlFor="age">Age (Years)</label>
+          <input 
+            id="age"
+            type="number"
+            value={userAge} 
+            onChange={ageChangeHandler}/>
+            <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </React.Fragment>
   );
 }
 
