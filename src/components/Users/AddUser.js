@@ -5,7 +5,7 @@ import ErrorModal from '../UI/ErrorModal';
 import Wrapper from '../Helpers/Wrapper';
 import classes from '../Styles/AddUser.module.css';
 
-
+// using ref's - Controlled vs Uncontrolled Components //
 const AddUser = (props) => {
   const nameInputRef = useRef();
   const ageInputRef = useRef();
