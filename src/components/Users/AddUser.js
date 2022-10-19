@@ -45,8 +45,8 @@ const AddUser = (props) => {
   }
 
   return (
-    //<Wrapper>
-    <React.Fragment>
+    // <React.Fragment>
+    <Wrapper>
       { error && 
         <ErrorModal 
           title={error.title} 
@@ -70,8 +70,8 @@ const AddUser = (props) => {
             <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </React.Fragment>
-    //</Wrapper>
+    </Wrapper>
+    //</React.Fragment> 
   );
 }
 
